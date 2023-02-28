@@ -7,7 +7,6 @@ import {
   DialogContentText,
   DialogActions,
   Button,
-  Slider,
 } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { SettingsObject, MarkerProps } from "@types";
@@ -25,7 +24,7 @@ type maybeHeader = null | HTMLElement;
 function Griddle() {
   const dispatch = useDispatch();
   const [settings, setSettings] = useState(defaultSettings);
-  const [zoom, setZoom] = useState(1);
+  const [zoom] = useState(1);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [hasImage, setHasImage] = useState(false);
   const headerRef = useRef(null as maybeHeader);
@@ -54,11 +53,6 @@ function Griddle() {
     setSettingsOpen(true);
   };
 
-  const handleZoomChange = (_event: Event, value: number | number[]) => {
-    console.log(value);
-    setZoom(value as number);
-  };
-
   const resetSettings = () => {
     setSettings(defaultSettings);
     clearMarkers();
@@ -80,18 +74,6 @@ function Griddle() {
           <header ref={headerRef}>
             <div className="content">
               <h1>{appConfig.name}</h1>
-              {hasImage && (
-                <div className="slider">
-                  <Slider
-                    aria-label="Zoom"
-                    value={zoom}
-                    onChange={handleZoomChange}
-                    min={1}
-                    max={2}
-                    step={0.0001}
-                  />
-                </div>
-              )}
               {hasMarkers && (
                 <>
                   <Button
