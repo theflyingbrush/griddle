@@ -1,0 +1,153 @@
+:root {
+  --grid-color: #012271;
+  --grid-size: 100px;
+  --font: 'Poppins', sans-serif;
+}
+
+@keyframes colorwrap {
+  0%   {background-color: tomato;}
+  20%  {background-color: yellow;}
+  40%  {background-color: peachpuff;}
+  60%  {background-color: aqua;}
+  80%  {background-color: royalblue;}
+  100% {background-color: tomato;}
+}
+
+body {
+  box-sizing: border-box;
+  background-color: #bbbbbb;
+  height: 100vh;
+  background-image: linear-gradient(45deg, var(--grid-color) 25%, transparent 25%), linear-gradient(-45deg, var(--grid-color) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--grid-color) 75%), linear-gradient(-45deg, transparent 75%, var(--grid-color) 75%);
+  background-size: var(--grid-size) var(--grid-size);
+  background-position: 0 0, 0 calc(var(--grid-size)/2), calc(var(--grid-size)/2) calc(var(--grid-size)/2), calc(var(--grid-size)/2) 0px;
+}
+
+.app {
+  display: flex;
+  
+}
+
+.marker {
+  z-index: 2;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  &.selected {
+    z-index: 10;
+  }
+  p {
+    position:absolute;
+    background-color: black;
+  }
+  .marker-dot {
+    cursor: move;
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    width: 10px;
+    height: 10px;
+    svg {
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      user-select: none;
+    }
+  }
+}
+
+.content-container {
+  color: white;
+}
+
+.marker-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  margin: auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.grid-container {
+  position: relative;
+  margin: auto;
+  img#image {
+    height: 90vh;
+  }
+  .grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.griddle {
+  width: 100%;
+  .intro {
+    animation: colorwrap 20s linear;
+    animation-iteration-count: infinite;
+    background-image: linear-gradient(45deg, var(--grid-color) 25%, transparent 25%), linear-gradient(-45deg, var(--grid-color) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, var(--grid-color) 75%), linear-gradient(-45deg, transparent 75%, var(--grid-color) 75%);
+    background-size: var(--grid-size) var(--grid-size);
+    background-position: 0 0, 0 calc(var(--grid-size)/2), calc(var(--grid-size)/2) calc(var(--grid-size)/2), calc(var(--grid-size)/2) 0px;
+    height: calc(100vh - 70px);
+    overflow:auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h1 {
+      margin: 0 0 1rem 0;
+      text-shadow: -20px 20px 10px #0000003a;
+      color: white;
+      font-family: var(--font);
+      font-size: 200px;
+    }
+  }
+  header {
+    .content {
+      padding: 1rem;
+      display: flex;
+    }
+    color: white;
+    background-color:rgb(59, 80, 80);
+    
+    position: sticky;
+    z-index: 10;
+    width: 100%;
+    h1 {
+      font-family: var(--font);
+      flex: 1 0 12%;
+      margin: 0;
+    }
+    .slider {
+      flex: 0 0 8%;
+      margin-right: 2rem;
+    }
+    .MuiButton-root + .MuiButton-root {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.settingsDialog {
+  h2 {
+    font-family: var(--font);
+    font-weight: bold;
+  }
+  p {
+    margin: 0 0 0.5rem;
+  }
+}
+
+.settings {
+  min-width: 500px;
+}
